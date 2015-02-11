@@ -1,25 +1,21 @@
 #  !/usr/bin/python -t
 #   -*- coding: utf-8 -*-
-import numpy
-
-def link(K, i):
-  '''
-  剛性マトリックスKにおいてi番目とj番目の節点を結合(link)する
-  '''
-  j = i + 1
-  K[i-1,:] = K[i-1,:] + K[j-1,:]
-  K[:,i-1] = K[:,i-1] + K[:,j-1]
-  K      = numpy.delete(numpy.delete(K, j-1, 0), j-1, 1)
-  return K
+import numpy as np
 
 def system(coefficient, element):
   '''
   システムマトリックスの作成
   '''
-  if(numpy.size(coefficient) == 1):
+  if(np.size(coefficient) == 1):
      return coefficient[0]*element
   else:
-     return link(numpy.kron(numpy.diag(numpy.array(coefficient)), element), numpy.size(element[0])*numpy.array(range(1, numpy.size(coefficient))))
+     system = np.kron(np.diag(coefficient), element)
+     index1 = np.size(element[0])*np.arange(1, np.size(coefficient))
+     index2 = index1 + 1
+     system[index1-1,:] = system[index1-1,:] + system[index2-1,:]
+     system[:,index1-1] = system[:,index1-1] + system[:,index2-1]
+     system = np.delete(np.delete(system, index2-1, 0), index2-1, 1)
+     return system
 
 class glo:
   '''
@@ -42,3 +38,4 @@ class glo:
     self.CS    = system(coefficient =                 self.mu           / self.H, element = self.C)
     self.CP    = system(coefficient = (self.la + 2. * self.mu)          / self.H, element = self.C)
     self.ZE    = self.CP*0.0
+
