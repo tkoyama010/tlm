@@ -4,7 +4,7 @@ import numpy as np
 
 def system(coefficient, element):
   '''
-  システムマトリックスの作成
+  make system matrix
   '''
   if(np.size(coefficient) == 1):
      return coefficient[0]*element
@@ -19,7 +19,7 @@ def system(coefficient, element):
 
 class glo:
   '''
-  全体マトリックス
+  make global matrix
   '''
   def __init__(self, thi, element):
     self.gam   = thi.gam

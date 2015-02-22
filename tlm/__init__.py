@@ -6,7 +6,7 @@ import mat
 """
 """
 
-__author__="小山哲央<tkoyama010@gmail.com>"
+__author__="Tetsuo Koyama<tkoyama010@gmail.com>"
 __status__="production"
 __version__="0.0.1"
 __date__=datetime.date.today().isoformat()
