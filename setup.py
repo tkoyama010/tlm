@@ -5,7 +5,7 @@ setup(name='tlm',
       description='matrix library of thin layer method',
       author='Tetsuo Koyama',
       author_email='tkoyama010@gmail.com',
-      url='https://tkoyama010@bitbucket.org/tkoyama010/tlm.git',
+      url='https://github.com/tkoyama010/tlm.git',
       packages=find_packages(),
       entry_points="""
       [console_scripts]
